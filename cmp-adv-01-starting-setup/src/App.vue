@@ -12,15 +12,16 @@
 <!--    <manage-goals v-if="selectedGoal === 2"></manage-goals>-->
 <!--    <inactive-goals v-if="selectedGoal === 3"></inactive-goals>-->
 
-
-    <component :is="selectedGoal"></component>
-
 <!--    <badge-list></badge-list>-->
 <!--    <user-info :active-user="activeUser"></user-info>-->
 <!--    <course-goals #default="slotProps">-->
 <!--        <h2>{{slotProps.item}}</h2>-->
 <!--        <p>{{slotProps.customProp}}</p>-->
 <!--    </course-goals>-->
+<!--    Removed from the dom when we change through components-->
+    <keep-alive>
+      <component :is="selectedGoal"></component>
+    </keep-alive>
   </div>
 </template>
 
