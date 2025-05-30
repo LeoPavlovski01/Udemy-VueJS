@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # udemy-course
 
 ## Project setup
@@ -17,3 +18,6 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# Udemy-VueJS
+>>>>>>> d785669c21cb375f2c0d9d7e0c60925d9b69ac57
