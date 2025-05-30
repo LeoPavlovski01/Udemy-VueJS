@@ -4,7 +4,10 @@
     <header-component></header-component>
     <badge-list></badge-list>
     <user-info :active-user="activeUser"></user-info>
-    <course-goals></course-goals>
+    <course-goals #default="slotProps">
+        <h2>{{slotProps.item}}</h2>
+        <p>{{slotProps.customProp}}</p>
+    </course-goals>
   </div>
 </template>
 
