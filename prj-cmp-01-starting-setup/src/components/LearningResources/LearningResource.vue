@@ -1,21 +1,29 @@
 <template>
 <li>
-  <div>
-    <header>
-      <h3>{{resource.title}}</h3>
-      <button>Delete</button>
-    </header>
-  </div>
-  <p>{{resource.description}}</p>
-  <nav>
-    <a :href="resource.link">View Resource</a>
-  </nav>
+  <BaseCard>
+    <template #header>
+      <div style="display:flex; align-content: center; justify-content: space-between">
+        <h3>{{resource.title}}</h3>
+        <button>Delete</button>
+      </div>
+    </template>
+    <template #description>
+      <p>{{resource.description}}</p>
+    </template>
+    <template #link>
+      <a :href="resource.link">View Resource</a>
+    </template>
+  </BaseCard>
+
 </li>
 </template>
 <script>
+import BaseCard from "@/components/UI/BaseCard.vue";
 export default {
-  props:['resource']
-
+  props:['resource'],
+  components:{
+    BaseCard
+  }
 }
 </script>
 
