@@ -2,32 +2,65 @@
   <div>
 <!--    <the-header></the-header>-->
     <header-component></header-component>
-    <badge-list></badge-list>
-    <user-info :active-user="activeUser"></user-info>
-    <course-goals></course-goals>
+    <button @click="handleGoals('active-goals')">Active Goals</button>
+    <button @click="handleGoals('manage-goals')">Manage Goals</button>
+    <button @click="handleGoals('inactive-goals')">Inactive Goals</button>
+
+<!--    <component :is="selectedGoal"></component>-->
+
+<!--    <active-goals v-if="selectedGoal === 1"></active-goals>-->
+<!--    <manage-goals v-if="selectedGoal === 2"></manage-goals>-->
+<!--    <inactive-goals v-if="selectedGoal === 3"></inactive-goals>-->
+
+
+    <component :is="selectedGoal"></component>
+
+<!--    <badge-list></badge-list>-->
+<!--    <user-info :active-user="activeUser"></user-info>-->
+<!--    <course-goals #default="slotProps">-->
+<!--        <h2>{{slotProps.item}}</h2>-->
+<!--        <p>{{slotProps.customProp}}</p>-->
+<!--    </course-goals>-->
   </div>
 </template>
 
 <script>
 import TheHeader from "@/components/TheHeader.vue";
-import BadgeList from "@/components/BadgeList.vue";
-import UserInfo from "@/components/UserInfo.vue";
-import CourseGoals from "@/components/CourseGoals.vue";
+import ActiveGoals from "@/components/ActiveGoals.vue";
+import ManageGoals from "@/components/ManageGoals.vue";
+import InactiveGoals from "@/components/InactiveGoals.vue";
+// import BadgeList from "@/components/BadgeList.vue";
+// import UserInfo from "@/components/UserInfo.vue";
+// import CourseGoals from "@/components/CourseGoals.vue";
 export default {
   components:{
-    CourseGoals,
+    InactiveGoals,
+    ActiveGoals,
+    ManageGoals,
     headerComponent:TheHeader,
-    badgeList:BadgeList,
-    userInfo:UserInfo,
+    // badgeList:BadgeList,
+    // userInfo:UserInfo,
   },
   data() {
     return {
+      selectedGoal:'active-goals',
       activeUser: {
         name: 'Maximilian Schwarzmüller',
         description: 'Site owner and admin',
         role: 'admin',
       },
     };
+  },
+  methods:{
+    handleGoals(cmp){
+      this.selectedGoal = cmp;
+      // switch(item){
+      //   case false:
+      //     return this.goals = false;
+      //   case true:
+      //     return this.goals = true;
+      // }
+    }
   },
 };
 </script>
