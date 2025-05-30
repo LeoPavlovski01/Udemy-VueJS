@@ -4,17 +4,20 @@
     <input v-model="goal" type="text">
     <button @click="saveGoal">Add goal</button>
     <p>{{newGoal}}</p>
-    <alert v-if="invalidInput">
-      <template #text>
-        <div style="display:flex; align-items:center; justify-content: space-between">
-          <h2>Error!!</h2>
-          <button @click="closeDialog">X</button>
-        </div>
-      </template>
-      <template #reason>
-        <h2>{{errorText}}</h2>
-      </template>
-    </alert>
+
+    <teleport to="body">
+      <alert v-if="invalidInput">
+        <template #text>
+          <div style="display:flex; align-items:center; justify-content: space-between">
+            <h2>Error!!</h2>
+            <button @click="closeDialog">X</button>
+          </div>
+        </template>
+        <template #reason>
+          <h2>{{errorText}}</h2>
+        </template>
+      </alert>
+    </teleport>
   </div>
 </template>
 
