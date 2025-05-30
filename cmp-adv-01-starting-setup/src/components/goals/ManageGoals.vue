@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Alert from "@/components/Alert.vue";
+import Alert from "@/components/layout/Alert.vue";
 export default {
   name: "ManageGoals.vue",
   components:{

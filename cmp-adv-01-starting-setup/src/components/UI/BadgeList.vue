@@ -37,7 +37,7 @@ li {
 }
 </style>
 <script>
-import BaseCard from "@/components/BaseCard.vue";
+import BaseCard from "@/components/UI/BaseCard.vue";
 
 export default {
   components:{
