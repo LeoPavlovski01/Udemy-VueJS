@@ -1,19 +1,11 @@
 <template>
-<!--  <listing-resources>-->
-<!--    <template #resource>-->
-<!--     <list-items :resources="storedResources"></list-items>-->
-<!--    </template>-->
-<!--  </listing-resources>-->
-  <ul>
-    <learning-resource :resource="res" v-for="res in storedResources" :key="res.id"></learning-resource>
-  </ul>
-
+ <stored-resources :resources="storedResources"></stored-resources>
 </template>
 <script>
-import LearningResource from "@/components/LearningResources/LearningResource.vue";
+import StoredResources from "@/components/LearningResources/StoredResources.vue";
 export default{
   components:{
-    LearningResource
+    StoredResources,
   },
   data(){
     return{
@@ -29,3 +21,18 @@ export default{
   }
 }
 </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
+
