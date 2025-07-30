@@ -53,6 +53,12 @@
     <div class="form-control">
       <rating-control v-model="rating"></rating-control>
     </div>
+<!--  TODO    Challenge created by me. Having 3 icons ( for example , instagram ,facebook , and twitter
+       on click we want to hover the icon to the initial color of the icon. and also send the data which icon has been selected.-->
+
+    <div class="form-control">
+      <social-media v-model="socialMedia"></social-media>
+    </div>
 
     <div class="form-control">
       <input type="checkbox" id="confirm-terms" name="confirm-terms" v-model="confirm">
@@ -66,9 +72,10 @@
 
 <script>
 import RatingControl from "@/components/RatingControl.vue";
+import SocialMedia from "@/components/SocialMedia.vue"
 
 export default{
-  components: {RatingControl},
+  components: {SocialMedia, RatingControl},
   data(){
     return{
       userName:'',
@@ -76,6 +83,7 @@ export default{
       referrer:'wom',
       interest:[],
       rating:null,
+      socialMedia:null,
       how:null,
       confirm:false,
       validateUserName:'pending',
@@ -91,6 +99,9 @@ export default{
       this.userAge = null;
       this.referrer = 'wom';
       console.log('RATING : ' , this.rating);
+      console.log('SOCIAL MEDIA : ' , this.socialMedia);
+      this.socialMedia = null;
+      console.log('SOCIAL MEDIA DELETED: ' , this.socialMedia);
       this.rating = null;
       this.interest= [];
       this.how = null;
@@ -135,6 +146,7 @@ export default{
 </script>
 
 <style scoped>
+
 form {
   margin: 2rem auto;
   max-width: 40rem;
@@ -146,6 +158,7 @@ form {
 
 .form-control {
   margin: 0.5rem 0;
+  width:100%;
 }
 
 label {
