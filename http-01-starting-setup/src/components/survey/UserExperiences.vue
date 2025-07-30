@@ -3,11 +3,13 @@
     <base-card>
       <h2>Submitted Experiences</h2>
       <div>
-        <base-button>Load Submitted Experiences</base-button>
+        <base-button @click="getSurveys">Load Submitted Experiences</base-button>
       </div>
-      <ul>
+      <p v-if="loading">Loading ...  please wait</p>
+      <p v-else-if="!loading && (!surveyResults || surveyResults.length === 0)">No Stored experiences found. Add some!</p>
+      <ul v-else-if="!loading && surveyResults && surveyResults.length > 0">
         <survey-result
-          v-for="result in results"
+          v-for="result in surveyResults"
           :key="result.id"
           :name="result.name"
           :rating="result.rating"
@@ -25,11 +27,14 @@ import SurveyResult from './SurveyResult.vue';
 // import MyUserExperiences from './MyUserExperiences.vue'
 
 export default {
-  props: ['results'],
   data(){
     return{
       surveyResults:[],
+      loading:false,
     }
+  },
+  mounted(){
+    this.getSurveys();
   },
   components: {
     // MyUserExperiences,
@@ -37,13 +42,42 @@ export default {
     SurveyResult,
   },
   methods:{
-    submitData(submittedForm){
-      const data = {
-        name:submittedForm.username,
-        experience:submittedForm.experience,
+    getSurveys(){
+      this.loading= true;
+      fetch('https://vue-http-demo-a77f1-default-rtdb.firebaseio.com/surveys.json').then((response) => {
+      if(response.ok){
+        return response.json();
       }
-      this.surveyResults.push(data);
-    }
+     //  Using the arrow functions is better , because of the THIS keywword.
+
+     }).then((data) =>{
+       const results = [];
+       for(const id in data){
+         results.push({
+           id:id,
+           name:data[id].name,
+           rating:data[id].rating,
+         })
+       }
+       this.surveyResults = results;
+     }).catch((error)=>{
+        console.log('error : ' , error);
+      }).finally(()=>{
+        this.loading = false;
+      });
+
+    },
+
+    // test(){
+    //   console.log('test');
+    // },
+    // submitData(submittedForm){
+    //   const data = {
+    //     name:submittedForm.username,
+    //     experience:submittedForm.experience,
+    //   }
+    //   this.surveyResults.push(data);
+    // }
   }
 };
 </script>
