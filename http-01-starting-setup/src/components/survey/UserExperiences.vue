@@ -15,14 +15,14 @@
       </ul>
     </base-card>
   </section>
-  <my-learning-survey @submit-survey="submitData"></my-learning-survey>
-  <my-user-experiences :results="surveyResults"></my-user-experiences>
+<!--  <my-learning-survey @submit-survey="submitData"></my-learning-survey>-->
+<!--  <my-user-experiences :results="surveyResults"></my-user-experiences>-->
 </template>
 
 <script>
 import SurveyResult from './SurveyResult.vue';
-import MyLearningSurvey from './MyLearningSurvey.vue'
-import MyUserExperiences from './MyUserExperiences.vue'
+// import MyLearningSurvey from './MyLearningSurvey.vue'
+// import MyUserExperiences from './MyUserExperiences.vue'
 
 export default {
   props: ['results'],
@@ -32,8 +32,8 @@ export default {
     }
   },
   components: {
-    MyUserExperiences,
-    MyLearningSurvey,
+    // MyUserExperiences,
+    // MyLearningSurvey,
     SurveyResult,
   },
   methods:{

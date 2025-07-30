@@ -13,19 +13,19 @@
 
 </base-card>
 <!--  emit the data from the survey , store it in a array.-->
-  <learning-survey-new @submit-survey="submitData"></learning-survey-new>
-  <user-experiences-new :results="sData"></user-experiences-new>
+<!--  <learning-survey-new @submit-survey="submitData"></learning-survey-new>-->
+<!--  <user-experiences-new :results="sData"></user-experiences-new>-->
 </template>
 
 <script>
 import MyBaseButton from "@/components/survey/MyBaseButton.vue";
 import mySurveyResult from "@/components/survey/mySurveyResult.vue";
-import LearningSurveyNew from "@/components/survey/LearningSurveyNew.vue"
-import UserExperiencesNew from "@/components/survey/UserExperiencesNew.vue"
+// import LearningSurveyNew from "@/components/survey/LearningSurveyNew.vue"
+// import UserExperiencesNew from "@/components/survey/UserExperiencesNew.vue"
 export default {
   props:['results'],
   name: "MyUserExperiences.vue",
-  components: {UserExperiencesNew, LearningSurveyNew, MyBaseButton ,mySurveyResult},
+  components: { MyBaseButton ,mySurveyResult},
   data(){
     return{
       sData:[],
