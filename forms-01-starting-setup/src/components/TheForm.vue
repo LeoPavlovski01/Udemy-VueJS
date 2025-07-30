@@ -51,7 +51,13 @@
       <p v-if="selectedLearningOption === 'invalid'" style="color:red;">* Please select at least one radio button!</p>
     </div>
     <div class="form-control">
-      <rating-control></rating-control>
+      <rating-control v-model="rating"></rating-control>
+    </div>
+<!--  TODO    Challenge created by me. Having 3 icons ( for example , instagram ,facebook , and twitter
+       on click we want to hover the icon to the initial color of the icon. and also send the data which icon has been selected.-->
+
+    <div class="form-control">
+      <social-media v-model="socialMedia"></social-media>
     </div>
 
     <div class="form-control">
@@ -66,21 +72,24 @@
 
 <script>
 import RatingControl from "@/components/RatingControl.vue";
+import SocialMedia from "@/components/SocialMedia.vue"
 
 export default{
-  components: {RatingControl},
+  components: {SocialMedia, RatingControl},
   data(){
     return{
       userName:'',
       userAge:null,
       referrer:'wom',
       interest:[],
+      rating:null,
+      socialMedia:null,
       how:null,
       confirm:false,
       validateUserName:'pending',
       validateUserAge:'pending',
       selectedInterest:'invalid',
-      selectedLearningOption:'invalid'
+      selectedLearningOption:'invalid',
     }
   },
   methods:{
@@ -89,6 +98,11 @@ export default{
       this.userName = '';
       this.userAge = null;
       this.referrer = 'wom';
+      console.log('RATING : ' , this.rating);
+      console.log('SOCIAL MEDIA : ' , this.socialMedia);
+      this.socialMedia = null;
+      console.log('SOCIAL MEDIA DELETED: ' , this.socialMedia);
+      this.rating = null;
       this.interest= [];
       this.how = null;
       this.confirm = false;
@@ -132,6 +146,7 @@ export default{
 </script>
 
 <style scoped>
+
 form {
   margin: 2rem auto;
   max-width: 40rem;
@@ -143,6 +158,7 @@ form {
 
 .form-control {
   margin: 0.5rem 0;
+  width:100%;
 }
 
 label {
