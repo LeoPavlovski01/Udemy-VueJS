@@ -2,12 +2,12 @@
   <form @submit.prevent="submitForm">
     <div class="form-control" :class="{invalid: validateUserName === 'invalid'}">
       <label for="user-name">Your Name</label>
-      <input :class="{invalid:validateUserName === 'invalid'}" id="user-name" name="user-name" type="text" v-model.trim="userName" @blur="validateInput" />
+      <input :class="{invalid:validateUserName === 'invalid'}" id="user-name" name="user-name" type="text" v-model.trim="userName" @input="validateInput" />
       <p v-if="validateUserName === 'invalid'" style="color:red;">Please Enter A Valid Username!</p>
     </div>
     <div class="form-control" :class="{invalid: validateUserAge === 'invalid'}">
       <label :class="{invalid:validateUserAge === 'invalid'}" for="age">Your Age (Years)</label>
-      <input @change="validateInput" id="age" type="number" name="age" v-model.trim="userAge"  />
+      <input @input="validateInput" id="age" type="number" name="age" v-model.trim="userAge"  />
       <p v-if="validateUserAge === 'invalid'" style="color:red;">Please Enter A Valid Age!</p>
     </div>
     <div class="form-control">
@@ -21,15 +21,15 @@
     <div class="form-control">
       <h2>What are you interested in?</h2>
       <div>
-        <input @change="validateInput" id="interest-news" name="interest" type="checkbox" value="news" v-model="interest" />
+        <input @input="validateInput" id="interest-news" name="interest" type="checkbox" value="news" v-model="interest" />
         <label for="interest-news">News</label>
       </div>
       <div>
-        <input  @change="validateInput" id="interest-tutorials" name="interest" type="checkbox" value="tutorials" v-model="interest" />
+        <input  @input="validateInput" id="interest-tutorials" name="interest" type="checkbox" value="tutorials" v-model="interest" />
         <label for="interest-tutorials">Tutorials</label>
       </div>
       <div>
-        <input  @change="validateInput" id="interest-nothing" name="interest" type="checkbox" value="nothing" v-model="interest" />
+        <input  @input="validateInput" id="interest-nothing" name="interest" type="checkbox" value="nothing" v-model="interest" />
         <label for="interest-nothing">Nothing</label>
       </div>
       <p v-if="selectedInterest === 'invalid'" style="color:red;">* Please select a checkbox!</p>
@@ -37,15 +37,15 @@
     <div class="form-control">
       <h2>How do you learn?</h2>
       <div>
-        <input @change="validateInput" id="how-video" name="how" type="radio" v-model="how" value="video" />
+        <input @input="validateInput" id="how-video" name="how" type="radio" v-model="how" value="video" />
         <label for="how-video">Video Courses</label>
       </div>
       <div>
-        <input @change="validateInput" id="how-blogs" name="how" type="radio"  v-model="how" value="blogs" />
+        <input @input="validateInput" id="how-blogs" name="how" type="radio"  v-model="how" value="blogs" />
         <label for="how-blogs">Blogs</label>
       </div>
       <div>
-        <input @change="validateInput" id="how-other" name="how" type="radio"  v-model="how" value="other" />
+        <input @input="validateInput" id="how-other" name="how" type="radio"  v-model="how" value="other" />
         <label for="how-other">Other</label>
       </div>
       <p v-if="selectedLearningOption === 'invalid'" style="color:red;">* Please select at least one radio button!</p>
@@ -79,6 +79,7 @@ export default{
   },
   methods:{
     submitForm(){
+      console.log('confirm' , this.confirm);
       this.userName = '';
       this.userAge = null;
       this.referrer = 'wom';
@@ -89,8 +90,6 @@ export default{
       this.validateUserAge = 'pending';
       this.selectedInterest = 'invalid';
       this.selectedLearningOption = 'invalid';
-
-      console.log('confirm' , this.confirm);
     },
     validateInput(){
       // Handle userName
