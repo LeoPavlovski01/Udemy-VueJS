@@ -51,7 +51,7 @@
       <p v-if="selectedLearningOption === 'invalid'" style="color:red;">* Please select at least one radio button!</p>
     </div>
     <div class="form-control">
-      <rating-control></rating-control>
+      <rating-control v-model="rating"></rating-control>
     </div>
 
     <div class="form-control">
@@ -75,12 +75,13 @@ export default{
       userAge:null,
       referrer:'wom',
       interest:[],
+      rating:null,
       how:null,
       confirm:false,
       validateUserName:'pending',
       validateUserAge:'pending',
       selectedInterest:'invalid',
-      selectedLearningOption:'invalid'
+      selectedLearningOption:'invalid',
     }
   },
   methods:{
@@ -89,6 +90,8 @@ export default{
       this.userName = '';
       this.userAge = null;
       this.referrer = 'wom';
+      console.log('RATING : ' , this.rating);
+      this.rating = null;
       this.interest= [];
       this.how = null;
       this.confirm = false;
