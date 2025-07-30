@@ -15,16 +15,36 @@
       </ul>
     </base-card>
   </section>
+  <my-learning-survey @submit-survey="submitData"></my-learning-survey>
+  <my-user-experiences :results="surveyResults"></my-user-experiences>
 </template>
 
 <script>
 import SurveyResult from './SurveyResult.vue';
+import MyLearningSurvey from './MyLearningSurvey.vue'
+import MyUserExperiences from './MyUserExperiences.vue'
 
 export default {
   props: ['results'],
+  data(){
+    return{
+      surveyResults:[],
+    }
+  },
   components: {
+    MyUserExperiences,
+    MyLearningSurvey,
     SurveyResult,
   },
+  methods:{
+    submitData(submittedForm){
+      const data = {
+        name:submittedForm.username,
+        experience:submittedForm.experience,
+      }
+      this.surveyResults.push(data);
+    }
+  }
 };
 </script>
 

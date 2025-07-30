@@ -38,6 +38,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -77,4 +78,5 @@ input[type='text'] {
   width: 20rem;
   margin-top: 0.5rem;
 }
+
 </style>
