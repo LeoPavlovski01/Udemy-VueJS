@@ -1,0 +1,40 @@
+<template>
+<div>
+<ul>
+  <li><button>Poor</button></li>
+  <li><button>Average</button></li>
+  <li><button>Great</button></li>
+</ul>
+</div>
+</template>
+
+
+<script>
+export default {
+  name: "RatingControl.vue"
+}
+</script>
+
+
+<style scoped>
+ul{
+  list-style:none;
+  margin:0.5rem 0;
+  padding:0;
+  display:flex;
+}
+li{
+  margin:0 1rem;
+  border:1px solid #ccc;
+  padding:1rem;
+  display:flex;
+  justify-content: center;
+}
+button{
+  font:inherit;
+  border:none;
+  background-color:transparent;
+  cursor:pointer;
+}
+</style>
+
