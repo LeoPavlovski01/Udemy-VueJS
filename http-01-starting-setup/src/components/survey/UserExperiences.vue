@@ -5,9 +5,12 @@
       <div>
         <base-button @click="getSurveys">Load Submitted Experiences</base-button>
       </div>
+<!--      Basic loading-->
       <p v-if="loading">Loading ...  please wait</p>
+<!--      If we have an catch error while fetching-->
+      <p v-else-if="!loading && errorMessage">{{errorMessage}}</p>
       <p v-else-if="!loading && (!surveyResults || surveyResults.length === 0)">No Stored experiences found. Add some!</p>
-      <ul v-else-if="!loading && surveyResults && surveyResults.length > 0">
+      <ul>
         <survey-result
           v-for="result in surveyResults"
           :key="result.id"
@@ -31,6 +34,7 @@ export default {
     return{
       surveyResults:[],
       loading:false,
+      errorMessage:null,
     }
   },
   mounted(){
@@ -44,14 +48,17 @@ export default {
   methods:{
     getSurveys(){
       this.loading= true;
+      this.errorMessage = null;
       fetch('https://vue-http-demo-a77f1-default-rtdb.firebaseio.com/surveys.json').then((response) => {
       if(response.ok){
         return response.json();
       }
-     //  Using the arrow functions is better , because of the THIS keywword.
+     //  Using the arrow functions is better , cuz we cannot access this keywoard out of the scope.
 
      }).then((data) =>{
+       this.loading = false;
        const results = [];
+       // Transforming the objects to an array of objects so we can iterate through them.
        for(const id in data){
          results.push({
            id:id,
@@ -60,12 +67,10 @@ export default {
          })
        }
        this.surveyResults = results;
-     }).catch((error)=>{
-        console.log('error : ' , error);
-      }).finally(()=>{
-        this.loading = false;
-      });
-
+     }).catch(()=>{
+       this.loading = false;
+       this.errorMessage = 'Failed to fetch the data, please try again later ...'
+      })
     },
 
     // test(){
