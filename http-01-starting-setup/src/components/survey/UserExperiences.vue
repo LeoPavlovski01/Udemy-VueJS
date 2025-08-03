@@ -18,11 +18,14 @@
         <survey-result
           v-for="result in surveyResults"
           :key="result.id"
+          :id="result.id"
           :name="result.name"
           :rating="result.rating"
+          @deleted="handleDeleted"
         ></survey-result>
       </ul>
     </base-card>
+    <p v-if="deletedMessage">{{ deletedMessage }}</p>
   </section>
   <!--  <my-learning-survey @submit-survey="submitData"></my-learning-survey>-->
   <!--  <my-user-experiences :results="surveyResults"></my-user-experiences>-->
@@ -39,6 +42,7 @@ export default {
       surveyResults: [],
       loading: false,
       errorMessage: null,
+      deletedMessage: null,
     };
   },
   mounted() {
@@ -50,6 +54,13 @@ export default {
     SurveyResult,
   },
   methods: {
+    handleDeleted() {
+      this.getSurveys();
+      this.deletedMessage = 'Success Operation! Survey has been deleted! ✅';
+      setTimeout(() => {
+        this.deletedMessage = null;
+      }, 3000);
+    },
     getSurveys() {
       this.loading = true;
       this.errorMessage = null;
@@ -73,6 +84,7 @@ export default {
               rating: data[id].rating,
             });
           }
+          console.log('Results : ', results);
           this.surveyResults = results;
         })
         .catch(() => {
