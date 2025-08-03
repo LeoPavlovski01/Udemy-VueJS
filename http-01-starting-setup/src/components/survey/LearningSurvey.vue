@@ -99,7 +99,6 @@ export default {
         .catch((error) => {
           // When for example the fetch method is /surveys and not /surveys.json this will end up here, because
           // it's an issue with the url.
-          console.log('Error : ', error);
           this.error = error.message;
         });
 

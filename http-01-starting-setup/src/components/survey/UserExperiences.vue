@@ -84,7 +84,6 @@ export default {
               rating: data[id].rating,
             });
           }
-          console.log('Results : ', results);
           this.surveyResults = results;
         })
         .catch(() => {

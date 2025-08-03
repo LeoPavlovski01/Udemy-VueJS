@@ -45,7 +45,6 @@ export default {
       )
         .then((response) => {
           if (response.ok) {
-            console.log('Resp ok ? ', response);
             this.error = false;
             this.deleted = true;
             // this.getExperiences();
